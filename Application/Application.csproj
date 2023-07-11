@@ -8,8 +8,6 @@
 
     <ItemGroup>
       <Folder Include="Autores\Command\" />
-      <Folder Include="Editoriales\" />
-      <Folder Include="Libros\" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,4 +22,8 @@
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Autores\Command\Update\" />
+      <None Remove="Autores\Command\Delete\" />
+    </ItemGroup>
 </Project>

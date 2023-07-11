@@ -1,4 +1,5 @@
 using Application.Autores;
+using Application.Autores.Command.Update;
 using Application.Autores.Create;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,27 +25,30 @@ public class AutoresController : ControllerBase
    }
    
    [HttpPut]
-   public async Task<IActionResult> Update(CreateAutorCommand request)
+   public async Task<IActionResult> Update(UpdateAutorCommand request)
    {
-      var result = await _business.Create(request);
+      var result = await _business.Update(request);
       return StatusCode(result.Code, result);
    }
    
    [HttpDelete]
-   public async Task<IActionResult> Delete(CreateAutorCommand request)
+   public async Task<IActionResult> Delete(DeleteAutorCommand request)
    {
-      var result = await _business.Create(request);
+      var result = await _business.Delete(request);
       return StatusCode(result.Code, result);
    }
    
    [HttpGet("{id}")]
-   public async Task<IActionResult> Find(string id)
+   public async Task<IActionResult> Find(int id)
    {
-      return await Task.FromResult(StatusCode(202));
-   }
+        var result = await _business.Find(id);
+        return StatusCode(result.Code, result);
+    }
+
    [HttpGet]
    public async Task<IActionResult> All()
    {
-      return await Task.FromResult(StatusCode(202));
+        var result = await _business.All();
+        return StatusCode(result.Code, result);
    }
 }
