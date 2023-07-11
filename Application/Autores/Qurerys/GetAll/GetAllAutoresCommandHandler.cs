@@ -19,6 +19,6 @@ public class GetAllAutoresCommandHandler:IRequestHandler<GetAllAutoresCommand, L
     public async Task<List<AutoresDto>> Handle(GetAllAutoresCommand request, CancellationToken cancellationToken)
     {
         var result = await _repository.GetAllAsync();
-        result 
+        return _mapper.Map<List<AutoresDto>>(result);
     }
 }

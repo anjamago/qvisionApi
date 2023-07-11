@@ -1,11 +1,15 @@
+using Application.Autores.Create;
+using Domain.Dtos;
+using Domain.Dtos.Request;
+
 namespace Application.Autores;
 
-public class IAutoresBusiness
+public interface IAutorBusiness
 {
-    Task<RequestBase<object>> Create(CreateCommand request);
-    Task<RequestBase<object>> Update(CreateCommand request);
-    Task<RequestBase<object>> Delete(CreateCommand request);
-    Task<RequestBase<AutoresDto>> Find(CreateCommand request);
+    Task<RequestBase<object>> Create(CreateAutorCommand request);
+    Task<RequestBase<object>> Update(CreateAutorCommand request);
+    Task<RequestBase<object>> Delete(CreateAutorCommand request);
+    Task<RequestBase<AutoresDto>> Find(CreateAutorCommand request);
     Task<RequestBase<List<AutoresDto>>> All();
 }
 

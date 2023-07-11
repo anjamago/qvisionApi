@@ -1,3 +1,4 @@
+using Application.inyect;
 using Infrastructure.Inyect;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,9 +12,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddInfrastructure(config);
+builder.Services.AddApplication()
+    .AddInfrastructure(config);
+
 
 var app = builder.Build();
+app.AppContextMigrate();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

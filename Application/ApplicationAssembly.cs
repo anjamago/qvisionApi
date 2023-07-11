@@ -1,6 +1,5 @@
 namespace Application;
 
-public class ApplicationAssembly
+internal class ApplicationAssembly
 {
-    
 }

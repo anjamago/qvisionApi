@@ -1,6 +1,12 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace WebApi.Controllers;
 
-public class EditorialController
+[ApiController]
+[Route("api/[controller]")]
+public class EditorialController:ControllerBase
 {
-    
+
+    [HttpGet]
+    public IActionResult Get() => StatusCode(202);
 }

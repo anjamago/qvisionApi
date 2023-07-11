@@ -18,7 +18,19 @@ public class LibrosContext:DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Autores>();
+        //modelBuilder.Entity<Libros>();
+        modelBuilder.Entity<Editoriales>();
+        modelBuilder.Entity<AutoresHasLibros>();
         
+        modelBuilder.Entity<Libros>()
+            .HasMany<Autores>(m => m.Autores)
+            .WithMany(m => m.Libros)
+            .UsingEntity<AutoresHasLibros>(
+                a=> a.HasOne<Autores>().WithMany().HasForeignKey(e=>e.autorId),
+                l=>l.HasOne<Libros>().WithMany().HasForeignKey(e=>e.libro_ISBN)
+            );
+
     }
   
 }

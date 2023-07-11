@@ -1,6 +1,12 @@
+using Microsoft.AspNetCore.Mvc;
+
 namespace WebApi.Controllers;
 
-public class LibrosController
+
+[ApiController]
+[Route("api/[controller]")]
+public class LibrosController:ControllerBase
 {
-    
+    [HttpGet]
+    public IActionResult Get() => StatusCode(202);
 }

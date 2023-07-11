@@ -10,4 +10,6 @@ public class Autores
     public int Id { get; set; }
     public string Nombre { set; get; }
     public string Apellidos { set; get; }
+
+    public List<Libros> Libros { set; get; } = new();
 }
