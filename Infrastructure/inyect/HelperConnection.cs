@@ -19,6 +19,7 @@ public class HelperConnection
         var user = configuration.GetValue<string>("ServiceDockerDatabase:User");
         var pwd =configuration.GetValue<string>("ServiceDockerDatabase:Passwor");
 
+        Console.WriteLine($"{server}, {database}, {pwd} {user}");
         return string.Format(
             "Server={0};Database={1};User ID={2};Password={3};Trusted_Connection=False;Encrypt=False;Persist Security Info=True;",
             server,

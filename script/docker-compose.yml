@@ -1,4 +1,8 @@
 version: '3.8'
+networks:
+  qvision:
+    name: micro
+
 services:
   qvision_database:
     container_name: "qvisionDatabaseSqlServer2022"
@@ -6,11 +10,14 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=qvision#2023
+      - MSSQL_DB=Libros
     ports:
       - "1433:1433"
     restart: always
     volumes:
       - ./qvision-logs:/app/App_Data/Logs
+    networks:
+      - qvision
   back_api:
     build: 
       context: ../
@@ -18,4 +25,9 @@ services:
     container_name: qvisionWebapi
     restart: always
     ports:
-      - "8080:8080"
+      - "8001:80"
+    depends_on:
+      - qvision_database
+    networks:
+      - qvision
+    
