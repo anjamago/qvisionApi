@@ -19,7 +19,7 @@ public class Libros
         set;
         get;
     }
-
-    public List<Autores> Autores { set; get; } = new();
+    
+    public List<Autores>  Autores { set; get; } 
 
 }

@@ -4,7 +4,6 @@ using Application.Editoriales.Create;
 using Application.Editoriales.GetAll;
 using Application.Editoriales.Qurerys.Find;
 using Application.Extensions;
-using Application.Libros.GetAll;
 using Domain.Dtos;
 using Domain.Dtos.Request;
 using FluentValidation;
@@ -29,7 +28,7 @@ public class EditorialBusiness : IEditorialBusiness
 
     public async Task<RequestBase<object>> Create(CreateEditorialCommand request)
     {
-        var result = await _create.ValidateAsync(request);
+        var result = await _create.ValidateAsync(request,op=>op.IncludeRuleSets("EditoriaExist"));
 
         if (!result.IsValid)
         {
@@ -75,14 +74,14 @@ public class EditorialBusiness : IEditorialBusiness
         FindEditorialCommand model = new(id);
         var result = await _sender.Send(model);
 
-        return new RequestBase<EditorialDto>();
+        return new RequestBase<EditorialDto>(data:result);
     }
     
-    public async Task<RequestBase<EditorialDto> >All()
+    public async Task<RequestBase<List<EditorialDto>> >All()
     {
         
         var result = await _sender.Send(new GetAllEditorialCommand());
 
-        return new RequestBase<EditorialDto>();
+        return new RequestBase<List<EditorialDto>>(data: result);
     }
 }

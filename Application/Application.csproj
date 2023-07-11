@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <Folder Include="Autores\Command\" />
+      <Folder Include="LibrosAutor\Command\" />
     </ItemGroup>
 
     <ItemGroup>

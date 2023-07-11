@@ -1,4 +1,6 @@
 using Application.Autores;
+using Application.Editoriales;
+using Application.Libros;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,5 +15,7 @@ public static class Application
             .AddAutoMapper(typeof(ApplicationAssembly).Assembly)
     
             .AddScoped<IAutorBusiness, AutorBusiness>()
+            .AddScoped<ILibrosBusiness, LibrosBusiness>()
+            .AddScoped<IEditorialBusiness,EditorialBusiness>()
         ;
 }

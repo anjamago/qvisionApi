@@ -1,4 +1,6 @@
 using System.Net;
+using Application.Autores.Qurerys.Find;
+using Application.Editoriales.Qurerys.Find;
 using Application.Extensions;
 using Application.Libros.Command.Update;
 using Application.Libros.Create;
@@ -29,13 +31,30 @@ public class LibrosBusiness : ILibrosBusiness
 
     public async Task<RequestBase<object>> Create(CreateLibrosCommand request)
     {
-        var result = await _create.ValidateAsync(request);
+        List<string> errors = new();
+        var result = await _create.ValidateAsync(request, op=>op.IncludeRuleSets("LibroAutor"));
 
         if (!result.IsValid)
         {
             return new RequestBase<object>(code: HttpStatusCode.BadRequest, message:"Errors" , errors: result.ResultErrors());
         }
 
+        var autor =  await _sender.Send(new FindAutorCommand(id: request.AutorId));
+        if (autor is null)
+        {
+            errors.Add("El autor relacionado al libro no se encuetra en el sistema");
+        }
+        var editorial =  await _sender.Send(new FindEditorialCommand(id: request.EditorialId));
+        if (editorial is null)
+        {
+            errors.Add("la Editorial relacionado al libro no se encuetra en el sistema");
+        }
+
+        if (errors.Count > 0)
+        {
+            return new RequestBase<object>(code: HttpStatusCode.BadRequest, message:"Errors" , errors: errors);
+        }
+        
         await _sender.Send(request);
 
         return new RequestBase<object>();
@@ -75,7 +94,7 @@ public class LibrosBusiness : ILibrosBusiness
         FindLibrosCommand model = new(id);
         var result = await _sender.Send(model);
 
-        return new RequestBase<LibrosDto>();
+        return new RequestBase<LibrosDto>(data:result);
     }
     
 
@@ -84,7 +103,7 @@ public class LibrosBusiness : ILibrosBusiness
         
         var result = await _sender.Send(new GetAllLibrosCommand());
 
-        return new RequestBase<List<LibrosDto>>();
+        return new RequestBase<List<LibrosDto>>(data: result);
     }
     
 }

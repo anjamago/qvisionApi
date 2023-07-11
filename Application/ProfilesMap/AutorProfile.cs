@@ -3,7 +3,7 @@ using Application.Autores.Create;
 using AutoMapper;
 using Domain.Dtos;
 
-namespace Application.Abstraciones;
+namespace Application.ProfilesMap;
 
 public class AutorProfile:Profile
 {

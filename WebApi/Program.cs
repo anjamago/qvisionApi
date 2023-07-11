@@ -15,10 +15,24 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddApplication()
     .AddInfrastructure(config);
 
+var AllowSpecificOrigins = "_myQvisionTest";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowSpecificOrigins,
+        policy  =>
+        {
+            policy.WithOrigins(
+                "http://localhost:4200",
+                "http://www.contoso.com"
+                )
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
 
 var app = builder.Build();
 app.AppContextMigrate();
-
+app.UseCors(AllowSpecificOrigins);
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

@@ -78,7 +78,7 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Seda")
+                    b.Property<string>("Sede")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

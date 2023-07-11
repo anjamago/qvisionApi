@@ -9,7 +9,7 @@ public class Editoriales
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     public string Nombre { set; get; }
-    public string Seda { set; get; }
+    public string Sede { set; get; }
     
     
 }
