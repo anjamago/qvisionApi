@@ -1,5 +1,7 @@
 using Application.inyect;
 using Infrastructure.Inyect;
+using Microsoft.EntityFrameworkCore;
+using Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,8 +33,17 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-app.AppContextMigrate();
+
 app.UseCors(AllowSpecificOrigins);
+
+
+using ( var service = app.Services.CreateScope())
+{
+    var context = service.ServiceProvider.GetRequiredService<LibrosContext>();
+    context.Database.Migrate();
+
+}
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

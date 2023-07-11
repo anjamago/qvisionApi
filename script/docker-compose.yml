@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  qvision_database:
+    container_name: "qvisionDatabaseSqlServer2022"
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=qvision#2023
+    ports:
+      - "1433:1433"
+    restart: always
+    volumes:
+      - ./qvision-logs:/app/App_Data/Logs
+  back_api:
+    build: 
+      context: ../
+      dockerfile: Dockerfile
+    container_name: qvisionWebapi
+    restart: always
+    ports:
+      - "8080:8080"

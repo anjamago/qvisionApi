@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,13 +24,5 @@ public  static class Infrastructure
     
     }
 
-    public static void AppContextMigrate(this WebApplication app)
-    {
-        using ( var service = app.Services.CreateScope())
-        {
-            var context = service.ServiceProvider.GetRequiredService<LibrosContext>();
-            context.Database.Migrate();
-
-        }
-    }
+  
 }
