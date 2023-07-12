@@ -1,7 +1,7 @@
 version: '3.8'
 networks:
   qvision:
-    name: micro
+    driver: bridge
 
 services:
   qvision_database:
