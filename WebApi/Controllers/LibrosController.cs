@@ -1,12 +1,14 @@
 using Application.Libros;
 using Application.Libros.Command.Update;
 using Application.Libros.Create;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class LibrosController:ControllerBase
 {

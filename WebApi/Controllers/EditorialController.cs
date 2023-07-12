@@ -1,11 +1,13 @@
 using Application.Editoriales;
 using Application.Editoriales.Command.Update;
 using Application.Editoriales.Create;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class EditorialController:ControllerBase
 {

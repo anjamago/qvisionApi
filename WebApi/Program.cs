@@ -2,6 +2,7 @@ using Application.inyect;
 using Infrastructure.Inyect;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Context;
+using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,12 +17,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddApplication()
     .AddInfrastructure(config);
+builder.Services.AddJwt(config);
 
 var AllowSpecificOrigins = "_myQvisionTest";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: AllowSpecificOrigins,
-        policy  =>
+        policy =>
         {
             policy.WithOrigins(
                 "http://localhost:4200",
@@ -37,7 +39,7 @@ var app = builder.Build();
 app.UseCors(AllowSpecificOrigins);
 
 
-using ( var service = app.Services.CreateScope())
+using (var service = app.Services.CreateScope())
 {
     var context = service.ServiceProvider.GetRequiredService<LibrosContext>();
     context.Database.Migrate();
@@ -53,6 +55,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
