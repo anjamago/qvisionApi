@@ -21,7 +21,7 @@ public class HelperConnection
 
         Console.WriteLine($"{server}, {database}, {pwd} {user}");
         return string.Format(
-            "Server={0};Database={1};User ID={2};Password={3};Trusted_Connection=False;Encrypt=False;Persist Security Info=True;",
+            "Server={0};Database={1};User ID={2};Password={3};Trusted_Connection=False;Encrypt=False;Persist Security Info=True; Integrated Security=false;TrustServerCertificate=true",
             server,
             database,
             user,

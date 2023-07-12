@@ -14,10 +14,10 @@ public class CreateCommandValidate:AbstractValidator<CreateAutorCommand>
         ()=>
         {
             RuleFor(r => r.name).MustAsync(AutorExistAsync)
-                .WithMessage("Nombre de autor ya se encuetra registrado en el sistema");
+                .WithMessage("Nombre de autor ya se encuetra registrado en el sistema {PropertyName}");
         });
-        RuleFor(r => r.name).NotEmpty().NotEmpty().WithMessage("Campo nombre de autor no puedes ser nulo o vacio");
-        RuleFor(r => r.lastName).NotEmpty().NotEmpty().WithMessage("Campo Apellidos del autor no puedes ser nulo o vacio");
+        RuleFor(r => r.name).NotEmpty().NotEmpty().WithMessage("Campo nombre de autor no puedes ser nulo o vacio {PropertyName}");
+        RuleFor(r => r.lastName).NotEmpty().NotEmpty().WithMessage("Campo Apellidos del autor no puedes ser nulo o vacio {PropertyName}");
     }
 
     private async Task<bool> AutorExistAsync(string name, CancellationToken cancellationToken)

@@ -27,4 +27,9 @@
       <None Remove="Autores\Command\Update\" />
       <None Remove="Autores\Command\Delete\" />
     </ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="QvisionTest" />
+	</ItemGroup>
+
 </Project>
