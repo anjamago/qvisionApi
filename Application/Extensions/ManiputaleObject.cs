@@ -2,7 +2,7 @@ using FluentValidation.Results;
 
 namespace Application.Extensions;
 
-internal  static class ManiputaleObject
+internal static class ManiputaleObject
 {
     public static bool IsValid(this object value)
     {

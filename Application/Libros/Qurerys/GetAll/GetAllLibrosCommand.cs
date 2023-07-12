@@ -3,6 +3,6 @@ using MediatR;
 
 namespace Application.Libros.GetAll;
 
-public class GetAllLibrosCommand:IRequest<List<LibrosDto>>
+public class GetAllLibrosCommand : IRequest<List<LibrosDto>>
 {
 }

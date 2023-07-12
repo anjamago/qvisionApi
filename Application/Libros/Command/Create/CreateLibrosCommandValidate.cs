@@ -1,19 +1,18 @@
+using Application.Extensions;
 using FluentValidation;
 using Persistence.Bases;
-using Application.Extensions;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Libros.Create;
 
 
-public class CreateLibrosCommandValidate:AbstractValidator<CreateLibrosCommand>
+public class CreateLibrosCommandValidate : AbstractValidator<CreateLibrosCommand>
 {
     private readonly IBaseRepository<Domain.Entitis.Libros> _repository;
-    public  CreateLibrosCommandValidate ( IBaseRepository<Domain.Entitis.Libros> repository)
+    public CreateLibrosCommandValidate(IBaseRepository<Domain.Entitis.Libros> repository)
     {
         _repository = repository;
         RuleSet("LibroAutor",
-        ()=>
+        () =>
         {
             RuleFor(r => r.titulo).MustAsync(LibroWhitAutor)
                 .WithMessage("Nombre del Libro ya se encuetra registrado en el sistema");
@@ -26,11 +25,11 @@ public class CreateLibrosCommandValidate:AbstractValidator<CreateLibrosCommand>
     private async Task<bool> LibroWhitAutor(string name, CancellationToken cancellationToken)
     {
         var isValid = await _repository.GetAsync(
-            predicate: l=>l.titulo== name
-           // include: inc=> inc.
+            predicate: l => l.titulo == name
+        // include: inc=> inc.
         );
-        
-        
-       return !isValid.IsValid();
+
+
+        return !isValid.IsValid();
     }
 }

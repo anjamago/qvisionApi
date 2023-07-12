@@ -5,7 +5,7 @@ using Persistence.Bases;
 
 namespace Application.Autores.GetAll;
 
-public class GetAllAutoresCommandHandler:IRequestHandler<GetAllAutoresCommand, List<AutoresDto>>
+public class GetAllAutoresCommandHandler : IRequestHandler<GetAllAutoresCommand, List<AutoresDto>>
 {
     private readonly IBaseRepository<Domain.Entitis.Autores> _repository;
     private readonly IMapper _mapper;

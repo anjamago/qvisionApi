@@ -5,7 +5,7 @@ using Persistence.Bases;
 
 namespace Application.Editoriales.GetAll;
 
-public class GetAllEditorialCommandHandler:IRequestHandler<GetAllEditorialCommand, List<EditorialDto>>
+public class GetAllEditorialCommandHandler : IRequestHandler<GetAllEditorialCommand, List<EditorialDto>>
 {
     private readonly IBaseRepository<Domain.Entitis.Editoriales> _repository;
     private readonly IMapper _mapper;

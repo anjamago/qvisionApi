@@ -4,7 +4,7 @@ using Persistence.Bases;
 
 namespace Application.Autores.Create;
 
-internal class CreateCommandHanble:IRequestHandler<CreateAutorCommand>
+internal class CreateCommandHanble : IRequestHandler<CreateAutorCommand>
 {
     private readonly IBaseRepository<Domain.Entitis.Autores> _repository;
     private readonly IMapper _mapper;
@@ -19,6 +19,6 @@ internal class CreateCommandHanble:IRequestHandler<CreateAutorCommand>
     {
         var model = _mapper.Map<Domain.Entitis.Autores>(request);
         await _repository.AddAsync(model);
-        
+
     }
 }

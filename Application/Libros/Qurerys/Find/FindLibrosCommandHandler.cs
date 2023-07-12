@@ -5,7 +5,7 @@ using Persistence.Bases;
 
 namespace Application.Libros.Qurerys.Find;
 
-public class FindLibrosCommandHandler: IRequestHandler<FindLibrosCommand, LibrosDto>
+public class FindLibrosCommandHandler : IRequestHandler<FindLibrosCommand, LibrosDto>
 {
     private readonly IBaseRepository<Domain.Entitis.Libros> _repository;
     private readonly IMapper _mapper;

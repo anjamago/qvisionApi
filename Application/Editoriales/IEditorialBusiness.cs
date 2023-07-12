@@ -8,8 +8,8 @@ namespace Application.Editoriales;
 public interface IEditorialBusiness
 {
     Task<RequestBase<object>> Create(CreateEditorialCommand request);
-    Task<RequestBase<object> >Update(UpdateEditorialCommand request);
-    Task<RequestBase<object> >Delete(DeleteEditorialCommand request);
-    Task<RequestBase<EditorialDto> >Find( int id);
-    Task<RequestBase<List<EditorialDto>> >All();
+    Task<RequestBase<object>> Update(UpdateEditorialCommand request);
+    Task<RequestBase<object>> Delete(DeleteEditorialCommand request);
+    Task<RequestBase<EditorialDto>> Find(int id);
+    Task<RequestBase<List<EditorialDto>>> All();
 }

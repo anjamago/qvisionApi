@@ -10,12 +10,12 @@ public static class Application
 {
     public static IServiceCollection AddApplication(this IServiceCollection service)
         => service
-            .AddMediatR(op=> op.RegisterServicesFromAssemblies(typeof(ApplicationAssembly).Assembly))
+            .AddMediatR(op => op.RegisterServicesFromAssemblies(typeof(ApplicationAssembly).Assembly))
             .AddValidatorsFromAssembly(typeof(ApplicationAssembly).Assembly)
             .AddAutoMapper(typeof(ApplicationAssembly).Assembly)
-    
+
             .AddScoped<IAutorBusiness, AutorBusiness>()
             .AddScoped<ILibrosBusiness, LibrosBusiness>()
-            .AddScoped<IEditorialBusiness,EditorialBusiness>()
+            .AddScoped<IEditorialBusiness, EditorialBusiness>()
         ;
 }

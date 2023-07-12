@@ -16,7 +16,7 @@ namespace QvisionTest.Core.Application.Autores
         private FindAutorCommandHandler _handlerFind;
 
 
-       
+
 
         [SetUp]
         public void SetUp()
@@ -43,7 +43,7 @@ namespace QvisionTest.Core.Application.Autores
             new AutoresDto { Id = 1, Nombre = "nombre" },
             new AutoresDto { Id = 2, Nombre = "nombre2" }
         };
-            _repositoryMock.Setup(r => r.GetAllAsync(null,null,null,null))
+            _repositoryMock.Setup(r => r.GetAllAsync(null, null, null, null))
                 .ReturnsAsync(entities);
             _mapperMock.Setup(m => m.Map<List<AutoresDto>>(entities))
                 .Returns(dtoList);
@@ -75,7 +75,7 @@ namespace QvisionTest.Core.Application.Autores
             // Arrange
             var command = new FindAutorCommand(1);
             var cancellationToken = CancellationToken.None;
-            var entity = new Domain.Entitis.Autores (){ Id = 1, Nombre = "" };
+            var entity = new Domain.Entitis.Autores() { Id = 1, Nombre = "" };
             var dto = new AutoresDto { Id = 1, Nombre = "" };
             _repositoryMock.Setup(r => r.GetAsync(It.IsAny<Expression<Func<Domain.Entitis.Autores, bool>>>(), null, null, null))
                 .ReturnsAsync(entity);

@@ -3,6 +3,6 @@ using MediatR;
 
 namespace Application.Autores.GetAll;
 
-public class GetAllAutoresCommand:IRequest<List<AutoresDto>>
+public class GetAllAutoresCommand : IRequest<List<AutoresDto>>
 {
 }

@@ -9,7 +9,7 @@ namespace WebApi.Controllers;
 [ApiController]
 [Authorize]
 [Route("api/[controller]")]
-public class EditorialController:ControllerBase
+public class EditorialController : ControllerBase
 {
 
     private readonly IEditorialBusiness _business;
@@ -26,21 +26,21 @@ public class EditorialController:ControllerBase
         var result = await _business.Create(request);
         return StatusCode(result.Code, result);
     }
-   
+
     [HttpPut]
     public async Task<IActionResult> Update(UpdateEditorialCommand request)
     {
         var result = await _business.Update(request);
         return StatusCode(result.Code, result);
     }
-   
+
     [HttpDelete]
     public async Task<IActionResult> Delete(DeleteEditorialCommand request)
     {
         var result = await _business.Delete(request);
         return StatusCode(result.Code, result);
     }
-   
+
     [HttpGet("{id}")]
     public async Task<IActionResult> Find(int id)
     {

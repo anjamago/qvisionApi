@@ -7,7 +7,7 @@ using Persistence.Context;
 
 namespace Infrastructure.Inyect;
 
-public  static class Infrastructure
+public static class Infrastructure
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
@@ -21,8 +21,8 @@ public  static class Infrastructure
         });
 
         services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-    
+
     }
 
-  
+
 }

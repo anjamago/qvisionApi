@@ -1,17 +1,17 @@
+using Application.Extensions;
 using FluentValidation;
 using Persistence.Bases;
-using Application.Extensions;
 namespace Application.Autores.Create;
 
 
-public class CreateCommandValidate:AbstractValidator<CreateAutorCommand>
+public class CreateCommandValidate : AbstractValidator<CreateAutorCommand>
 {
     private readonly IBaseRepository<Domain.Entitis.Autores> _repository;
-    public  CreateCommandValidate ( IBaseRepository<Domain.Entitis.Autores> repository)
+    public CreateCommandValidate(IBaseRepository<Domain.Entitis.Autores> repository)
     {
         _repository = repository;
         RuleSet("NameExist",
-        ()=>
+        () =>
         {
             RuleFor(r => r.name).MustAsync(AutorExistAsync)
                 .WithMessage("Nombre de autor ya se encuetra registrado en el sistema {PropertyName}");
@@ -25,6 +25,6 @@ public class CreateCommandValidate:AbstractValidator<CreateAutorCommand>
         var isValid = await _repository.GetAsync(
             predicate: aut => aut.Nombre == name
         );
-       return !isValid.IsValid();
+        return !isValid.IsValid();
     }
 }

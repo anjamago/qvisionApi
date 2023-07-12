@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Libros.Command.Update;
 
-public class UpdateLibrosCommandValidate:AbstractValidator<UpdateLibrosCommand>
+public class UpdateLibrosCommandValidate : AbstractValidator<UpdateLibrosCommand>
 {
     public UpdateLibrosCommandValidate()
     {

@@ -4,7 +4,7 @@ using Persistence.Bases;
 
 namespace Application.Editoriales.Create;
 
-internal class CreateCommandHanble:IRequestHandler<CreateEditorialCommand>
+internal class CreateCommandHanble : IRequestHandler<CreateEditorialCommand>
 {
     private readonly IBaseRepository<Domain.Entitis.Editoriales> _repository;
     private readonly IMapper _mapper;
@@ -19,6 +19,6 @@ internal class CreateCommandHanble:IRequestHandler<CreateEditorialCommand>
     {
         var model = _mapper.Map<Domain.Entitis.Editoriales>(request);
         await _repository.AddAsync(model);
-        
+
     }
 }

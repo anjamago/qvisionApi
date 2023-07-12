@@ -15,11 +15,12 @@ public class Libros
     public string n_paginas { set; get; }
 
     [ForeignKey("EditorialId")]
-    public virtual Editoriales Editoriales {
+    public virtual Editoriales Editoriales
+    {
         set;
         get;
     }
-    
-    public List<Autores>  Autores { set; get; } 
+
+    public List<Autores> Autores { set; get; }
 
 }

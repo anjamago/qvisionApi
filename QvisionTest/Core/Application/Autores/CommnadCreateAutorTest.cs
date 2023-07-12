@@ -9,11 +9,11 @@ namespace QvisionTest.Core.Application.Autores
     [TestFixture]
     public class CommnadCreateAutorTest
     {
-        private  Mock<IMapper> _mapperMock;
-        private  Mock<IBaseRepository<Domain.Entitis.Autores>> _repositoriesMock;
+        private Mock<IMapper> _mapperMock;
+        private Mock<IBaseRepository<Domain.Entitis.Autores>> _repositoriesMock;
         private CreateCommandHanble _handler;
-        
-        
+
+
         [SetUp]
         public void SetUp()
         {
@@ -27,7 +27,7 @@ namespace QvisionTest.Core.Application.Autores
         {
             // Arrange
             var request = new CreateAutorCommand("name", "lastname");
- 
+
             var mappedModel = new Domain.Entitis.Autores();
             _mapperMock.Setup(m => m.Map<Domain.Entitis.Autores>(request)).Returns(mappedModel);
 
@@ -38,7 +38,7 @@ namespace QvisionTest.Core.Application.Autores
             _repositoriesMock.Verify(r => r.AddAsync(mappedModel), Times.Once);
 
         }
-        
+
         [Test]
         public void Handle_InvalidRequest_ThrowsException()
         {

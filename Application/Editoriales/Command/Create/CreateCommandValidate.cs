@@ -1,17 +1,17 @@
+using Application.Extensions;
 using FluentValidation;
 using Persistence.Bases;
-using Application.Extensions;
 namespace Application.Editoriales.Create;
 
 
-public class CreateCommandValidate:AbstractValidator<CreateEditorialCommand>
+public class CreateCommandValidate : AbstractValidator<CreateEditorialCommand>
 {
     private readonly IBaseRepository<Domain.Entitis.Editoriales> _repository;
-    public  CreateCommandValidate ( IBaseRepository<Domain.Entitis.Editoriales> repository)
+    public CreateCommandValidate(IBaseRepository<Domain.Entitis.Editoriales> repository)
     {
         _repository = repository;
         RuleSet("EditoriaExist",
-        ()=>
+        () =>
         {
             RuleFor(r => r.name).MustAsync(AutorExistAsync)
                 .WithMessage($" La editorial ya se en cuentra registrada");
@@ -25,6 +25,6 @@ public class CreateCommandValidate:AbstractValidator<CreateEditorialCommand>
         var isValid = await _repository.GetAsync(
             predicate: ed => ed.Nombre == name
         );
-       return !isValid.IsValid();
+        return !isValid.IsValid();
     }
 }

@@ -6,7 +6,7 @@ using Persistence.Bases;
 
 namespace Application.Libros.GetAll;
 
-public class GetAllLibrosCommandHandler:IRequestHandler<GetAllLibrosCommand, List<LibrosDto>>
+public class GetAllLibrosCommandHandler : IRequestHandler<GetAllLibrosCommand, List<LibrosDto>>
 {
     private readonly IBaseRepository<Domain.Entitis.Libros> _repository;
     private readonly IMapper _mapper;
@@ -20,9 +20,9 @@ public class GetAllLibrosCommandHandler:IRequestHandler<GetAllLibrosCommand, Lis
     public async Task<List<LibrosDto>> Handle(GetAllLibrosCommand request, CancellationToken cancellationToken)
     {
         var result = await _repository.GetAllAsync(
-            include:inc=>inc.Include(
-                i=>i.Editoriales
-            ).Include(i=>i.Autores)
+            include: inc => inc.Include(
+                i => i.Editoriales
+            ).Include(i => i.Autores)
 
         );
         return _mapper.Map<List<LibrosDto>>(result);

@@ -5,7 +5,7 @@ using Persistence.Bases;
 
 namespace Application.Autores.Qurerys.Find;
 
-public class FindAutorCommandHandler: IRequestHandler<FindAutorCommand, AutoresDto>
+public class FindAutorCommandHandler : IRequestHandler<FindAutorCommand, AutoresDto>
 {
     private readonly IBaseRepository<Domain.Entitis.Autores> _repository;
     private readonly IMapper _mapper;

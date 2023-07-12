@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Application.Editoriales.Command.Update;
 
-public class UpdateEditorialCommandValidate:AbstractValidator<UpdateEditorialCommand>
+public class UpdateEditorialCommandValidate : AbstractValidator<UpdateEditorialCommand>
 {
     public UpdateEditorialCommandValidate()
     {

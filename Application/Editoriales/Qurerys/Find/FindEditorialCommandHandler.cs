@@ -5,7 +5,7 @@ using Persistence.Bases;
 
 namespace Application.Editoriales.Qurerys.Find;
 
-public class FindEditorialCommandHandler: IRequestHandler<FindEditorialCommand, EditorialDto>
+public class FindEditorialCommandHandler : IRequestHandler<FindEditorialCommand, EditorialDto>
 {
     private readonly IBaseRepository<Domain.Entitis.Editoriales> _repository;
     private readonly IMapper _mapper;
